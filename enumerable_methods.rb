@@ -21,4 +21,13 @@ module Enumerable
     end
     self
   end
+
+  # my_select
+  def my_select
+    return to_enum(:each) unless block_given?
+
+    arr = []
+    my_each { |el| arr.push(el) if yield el }
+    arr
+  end
 end
