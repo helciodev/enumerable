@@ -115,3 +115,7 @@ module Enumerable
     my_arg
   end
 end
+
+def multiply_els(arr)
+    arr.my_inject { |acc, cn| acc * cn }
+end
