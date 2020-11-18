@@ -15,7 +15,8 @@ This project is about rebuilding some Enumerable methods in Ruby
 - my_map that behaves like the map Enumerable method in Ruby
 - my_inject that behaves like the inject Enumerable method in Ruby
 
-- [![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)](https://forthebadge.com)
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)](https://forthebadge.com)
 
 ## Live Demo
 [Live demo](https://repl.it/@helciodev/TroubledBelovedObjectmodel#main.rb)
