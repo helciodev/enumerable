@@ -100,4 +100,18 @@ module Enumerable
     end
     arr
   end
+
+  def my_inject(my_arg = nil, sym = nil)
+    if (my_arg.is_a?(Symbol) || my_arg.is_a?(String)) && (!my_arg.nil? && sym.nil?)
+      sym = my_arg
+      my_arg = nil
+    end
+
+    if !block_given? && !sym.nil?
+      my_each { |elt| my_arg = my_arg.nil? ? elt : my_arg.send(sym, elt) }
+    else
+      my_each { |elt| my_arg = my_arg.nil? ? elt : yield(my_arg, elt) }
+    end
+    my_arg
+  end
 end
