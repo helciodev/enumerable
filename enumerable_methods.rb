@@ -11,4 +11,14 @@ module Enumerable
     end
     self
   end
+
+  # my_each_with_index
+  def my_each_with_index
+    return to_enum(:each) unless block_given?
+
+    size.times do |i|
+      yield self[i], i
+    end
+    self
+  end
 end
