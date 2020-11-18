@@ -64,4 +64,20 @@ module Enumerable
       my_each { |el| return false if el != my_arg }
     end
   end
+
+  #my_none
+  def my_none?(my_arg = nil)
+    my_each { |el| return false if el } if !block_given? && my_arg.nil?
+
+    my_each { |el| return false if yield(el) } if block_given?
+
+    if my_arg.is_a?(Class)
+      my_each { |el| return false if el.is_a?(my_arg) }
+    elsif my_arg.is_a?(Regexp)
+      my_each { |el| return false if el.to_s.match(my_arg) }
+    elsif !my_arg.nil?
+      my_each { |el| return false if el == my_arg }
+    end
+    true
+  end
 end
