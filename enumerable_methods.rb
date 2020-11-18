@@ -1,8 +1,10 @@
-# rubocop: disable Metrics/ModuleLength
-# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Style/For
 
 module Enumerable
-    # my_each
+  # my_each
   def my_each
     return to_enum(:each) unless block_given?
 
@@ -48,7 +50,7 @@ module Enumerable
     true
   end
 
-  #my_any
+  # my_any
   def my_any?(my_arg = nil)
     if block_given?
       my_each { |el| return true if yield(el) == true }
@@ -65,7 +67,7 @@ module Enumerable
     end
   end
 
-  #my_none
+  # my_none
   def my_none?(my_arg = nil)
     my_each { |el| return false if el } if !block_given? && my_arg.nil?
 
@@ -88,7 +90,7 @@ module Enumerable
    my_select { |el| yield(el) }.length
   end
 
-  #my_map
+  # my_map
   def my_map(proc = nil)
     return to_enum(:my_map) unless block_given? || proc
 
@@ -117,5 +119,5 @@ module Enumerable
 end
 
 def multiply_els(arr)
-    arr.my_inject { |acc, cn| acc * cn }
+  arr.my_inject { |acc, cn| acc * cn }
 end
