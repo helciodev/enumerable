@@ -87,4 +87,17 @@ module Enumerable
 
    my_select { |el| yield(el) }.length
   end
+
+  #my_map
+  def my_map(proc = nil)
+    return to_enum(:my_map) unless block_given? || proc
+
+    arr = []
+    if proc
+      my_each { |el| arr.push(proc.call(el)) }
+    else
+      my_each { |el| arr.push(yield(el)) }
+    end
+    arr
+  end
 end
