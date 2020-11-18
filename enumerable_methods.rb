@@ -1,7 +1,5 @@
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
-# rubocop:disable Metrics/MethodLength
-# rubocop:disable Style/For
 
 module Enumerable
   # my_each
@@ -84,10 +82,10 @@ module Enumerable
   end
 
   # my_count
-  def my_count
+  def my_count(&block)
     return size unless block_given?
 
-    my_select { |el| yield(el) }.length
+    my_select(&block).length
   end
 
   # my_map
@@ -121,3 +119,6 @@ end
 def multiply_els(arr)
   arr.my_inject { |acc, cn| acc * cn }
 end
+
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
