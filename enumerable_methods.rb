@@ -47,4 +47,21 @@ module Enumerable
     end
     true
   end
+
+  #my_any
+  def my_any?(my_arg = nil)
+    if block_given?
+      my_each { |el| return true if yield(el) == true }
+      false
+
+    elsif my_arg.nil?
+      my_each { |el| return false if el.nil? || el == false }
+    elsif !arg.nil? && (arg.is_a? Class)
+      my_each { |el| return false if el.class != my_arg }
+    elsif !my_arg.nil? && arg.class == Regexp
+      my_each { |el| return false unless my_arg.match(el) }
+    else
+      my_each { |el| return false if el != my_arg }
+    end
+  end
 end
