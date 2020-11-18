@@ -1,22 +1,24 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
 
-# Bubble Sort
-This project is about implementing bubble sort algorithm using ruby, it is focused on the use of yield and passing a block to a method
-
-## animation representing bubble_sort
-![screenshot](images/bubble_sort.gif)
-
+# Enumerable Methods
+This project is about rebuilding some Enumerable methods in Ruby
 
 ## About Project Features:
-
-- A bubble sort method 'bubble_sort' that returns a sorted array consisting of integers in ascending order
-- A bubble sort method 'bubble_sort_by' that returns a sorted array consisting of strings in ascending order based on the number of characters for each word
-
-
-## Built With
+- my_each method that behaves like the each Enumerable method in Ruby
+- my_each_with_index that behaves like the each_with_index Enumerable method in Ruby
+- my_select that behaves like the select Enumerable method in Ruby
+- my_all? that behaves like the all? Enumerable method in Ruby
+- my_any? that behaves like the any? Enumerable method in Ruby
+- my_none? that behaves like the none Enumerable method in Ruby
+- my_count that behaves like the count Enumerable method in Ruby
+- my_map that behaves like the map Enumerable method in Ruby
+- my_inject that behaves like the inject Enumerable method in Ruby
 
 - [![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)](https://forthebadge.com)
+
+## Live Demo
+[Live demo](https://repl.it/@helciodev/TroubledBelovedObjectmodel#main.rb)
 
 ## Getting Started
 
@@ -33,12 +35,12 @@ To get a local copy of this repository up and running follow these simple steps:
 ### Install
 
 - Go to your preferred directory
-- Run git clone git@github.com:helciodev/directory-of-schools.git command
+- Run git clone git@github.com:helciodev/enumerable.git command
 
 ### Usage
 
-- Open command line and type ruby bubble_sort.rb to run the file
-- To change arguments edit the arguments on bubble_sort.rb
+- Open command line and type ruby enumerable_methods to run the file
+- To change arguments edit the arguments on enumerable_methods.rb
 
 ## Author
 
