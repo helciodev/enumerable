@@ -80,4 +80,11 @@ module Enumerable
     end
     true
   end
+
+  # my_count
+  def my_count
+    return size unless block_given?
+
+   my_select { |el| yield(el) }.length
+  end
 end
