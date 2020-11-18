@@ -1,7 +1,5 @@
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
-# rubocop:disable Metrics/MethodLength
-# rubocop:disable Style/For
 
 module Enumerable
   # my_each
@@ -42,7 +40,7 @@ module Enumerable
       my_each { |el| return false if el.nil? || el == false }
     elsif !my_arg.nil? && (my_arg.is_a? Class)
       my_each { |el| return false if el.class != my_arg }
-    elsif !my_arg.nil? && my_arg.class == Regexp
+    elsif !my_arg.nil? && my_arg.instance_of?(Regexp)
       my_each { |el| return false unless my_arg.match(el) }
     else
       my_each { |el| return false if el != my_arg }
@@ -60,7 +58,7 @@ module Enumerable
       my_each { |el| return false if el.nil? || el == false }
     elsif !arg.nil? && (arg.is_a? Class)
       my_each { |el| return false if el.class != my_arg }
-    elsif !my_arg.nil? && arg.class == Regexp
+    elsif !my_arg.nil? && arg.instance_of?(Regexp)
       my_each { |el| return false unless my_arg.match(el) }
     else
       my_each { |el| return false if el != my_arg }
@@ -87,7 +85,7 @@ module Enumerable
   def my_count
     return size unless block_given?
 
-   my_select { |el| yield(el) }.length
+    my_select { |el| yield(el) }.length
   end
 
   # my_map
