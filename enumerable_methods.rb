@@ -10,7 +10,7 @@ module Enumerable
     size.times do |i|
       yield arr[i]
     end
-    arr
+    self
   end
 
   # my_each_with_index
@@ -21,7 +21,7 @@ module Enumerable
     size.times do |i|
       yield arr[i], i
     end
-    arr
+    self
   end
 
   # my_select
@@ -36,16 +36,16 @@ module Enumerable
   # my_all
   def my_all?(my_arg = nil)
     if block_given?
-      my_each { |el| return false unless yield(el) == false }
-      true
+      to_a.my_each { |el| return false if yield(el) == false }
+      return true
     elsif my_arg.nil?
-      my_each { |el| return false if el.nil? || el == false }
+      to_a.my_each { |el| return false if el.nil? || el == false }
     elsif !my_arg.nil? && (my_arg.is_a? Class)
-      my_each { |el| return false if el.class != my_arg }
+      to_a.my_each { |el| return false unless [el.class, el.class.superclass].include?(my_arg) }
     elsif !my_arg.nil? && my_arg.instance_of?(Regexp)
-      my_each { |el| return false unless my_arg.match(el) }
+      to_a.my_each { |el| return false unless my_arg.match(el) }
     else
-      my_each { |el| return false if el != my_arg }
+      to_a.my_each { |el| return false if el != my_arg }
     end
     true
   end
@@ -53,18 +53,18 @@ module Enumerable
   # my_any
   def my_any?(my_arg = nil)
     if block_given?
-      my_each { |el| return true if yield(el) == true }
-      false
-
+      to_a.my_each { |el| return true if yield(el) }
+      return false
     elsif my_arg.nil?
-      my_each { |el| return false if el.nil? || el == false }
-    elsif !arg.nil? && (arg.is_a? Class)
-      my_each { |el| return false if el.class != my_arg }
-    elsif !my_arg.nil? && arg.instance_of?(Regexp)
-      my_each { |el| return false unless my_arg.match(el) }
+      to_a.my_each { |el| return true if el }
+    elsif !my_arg.nil? && (my_arg.is_a? Class)
+      to_a.my_each { |el| return true if [el.class, el.class.superclass].include?(my_arg) }
+    elsif !my_arg.nil? && my_arg.instance_of?(Regexp)
+      to_a.my_each { |el| return true if my_arg.match(el) }
     else
-      my_each { |el| return false if el != my_arg }
+      to_a.my_each { |el| return true if el == my_arg }
     end
+    false
   end
 
   # my_none
@@ -84,10 +84,16 @@ module Enumerable
   end
 
   # my_count
-  def my_count(&block)
-    return size unless block_given?
-
-    my_select(&block).length
+  def my_count(my_arg = nil)
+    count = 0
+    if block_given?
+      to_a.my_each { |el| count += 1 if yield(el) }
+    elsif !block_given? && my_arg.nil?
+      count = to_a.size
+    else
+      count = to_a.my_select { |el| el == my_arg }.size
+    end
+    count
   end
 
   # my_map
