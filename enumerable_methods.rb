@@ -4,7 +4,7 @@
 module Enumerable
   # my_each
   def my_each
-    return to_enum(:each) unless block_given?
+    return to_enum(:my_each) unless block_given?
 
     size.times do |i|
       yield self[i]
@@ -14,7 +14,7 @@ module Enumerable
 
   # my_each_with_index
   def my_each_with_index
-    return to_enum(:each) unless block_given?
+    return to_enum(:my_each_with_index) unless block_given?
 
     size.times do |i|
       yield self[i], i
@@ -24,7 +24,7 @@ module Enumerable
 
   # my_select
   def my_select
-    return to_enum(:each) unless block_given?
+    return to_enum(:my_select) unless block_given?
 
     arr = []
     my_each { |el| arr.push(el) if yield el }
