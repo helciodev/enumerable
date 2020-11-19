@@ -4,22 +4,24 @@
 module Enumerable
   # my_each
   def my_each
-    return to_enum(:my_each) unless block_given?
+    return to_enum(:each) unless block_given?
 
+    arr = *self
     size.times do |i|
-      yield self[i]
+      yield arr[i]
     end
-    self
+    arr
   end
 
   # my_each_with_index
   def my_each_with_index
-    return to_enum(:my_each_with_index) unless block_given?
+    return to_enum(:each) unless block_given?
 
+    arr = *self
     size.times do |i|
-      yield self[i], i
+      yield arr[i], i
     end
-    self
+    arr
   end
 
   # my_select
@@ -34,7 +36,7 @@ module Enumerable
   # my_all
   def my_all?(my_arg = nil)
     if block_given?
-      my_each { |el| return false if yield(el) == false }
+      my_each { |el| return false unless yield(el) == false }
       true
     elsif my_arg.nil?
       my_each { |el| return false if el.nil? || el == false }
